@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  background: rgba(111, 123, 90, 0.3);
+  width: 100%;
+  font-family: 'Alegreya Sans';
+}
+
+.container {
+  max-width: 80%;
+  margin: 0 auto;
+  background: white;
+}
+
+header {
+  max-width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+nav li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.content {
+  max-width: 100%;
+  height: auto;
+  margin: 20px;
+  text-align: center;
+}
+
+.search-results {
+  margin: 20px;
+}
+
+footer {
+  max-width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
