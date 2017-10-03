@@ -1,0 +1,10 @@
+<%= erb :booksearch %>
+
+<div class="search-results">
+  <% @data_array.each do |book| %>
+  <a href="/about?search=<%= book["id"]%>">
+    <%="#{book["volumeInfo"]["title"]}, #{book["volumeInfo"]["authors"].join(", ")}" %>
+  </a>
+  <br>
+<% end %>
+</div>
