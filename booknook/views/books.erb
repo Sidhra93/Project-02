@@ -1,10 +1,15 @@
-<%= erb :booksearch %>
+<form class="" action="/books" method="get">
+  <input type="text" name="search" value="">
+  <button type="submit" name="button">Search</button>
+</form>
 
 <div class="search-results">
-  <% @data_array.each do |book| %>
-  <a href="/about?search=<%= book["id"]%>">
+  <% @books.each do |book| %>
+  <div class="search-item">
+    <a href="/details?search=<%= book["id"]%>">
+      <img src="<%= book["volumeInfo"]["imageLinks"]["smallThumbnail"]%>" alt="" width="100px">
+    </a>
     <%="#{book["volumeInfo"]["title"]}, #{book["volumeInfo"]["authors"].join(", ")}" %>
-  </a>
-  <br>
+  </div>
 <% end %>
 </div>

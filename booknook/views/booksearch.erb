@@ -1,4 +1,15 @@
 <form class="" action="/books" method="get">
   <input type="text" name="search" value="">
   <button type="submit" name="button">Search</button>
-</form><br>
+</form>
+
+<div class="search-results">
+  <% @books.each do |book| %>
+  <div class="search-item">
+    <a href="/details?search=<%= book.volume_id%>">
+      <img src="<%= book.image_url%>" alt="" width="100px">
+    </a>
+    <%="#{book.title}, #{book.author}" %>
+  </div>
+<% end %>
+</div>
