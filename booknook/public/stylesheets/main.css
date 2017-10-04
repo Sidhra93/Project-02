@@ -1,12 +1,12 @@
 * {
   box-sizing: border-box;
   margin: 0;
+  font-family: 'Alegreya Sans';
 }
 
 body {
   background: rgba(111, 123, 90, 0.3);
   width: 100%;
-  font-family: 'Alegreya Sans';
 }
 
 .container {
@@ -34,6 +34,18 @@ nav li {
 
 .search-results {
   margin: 20px;
+}
+
+.search-results a {
+  display: block;
+}
+
+.search-item {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  width: 30%;
+  margin: 10px;
+  padding: 10px;
+  display: inline-block;
 }
 
 footer {
