@@ -33,7 +33,7 @@ nav li {
 }
 
 .search-results {
-  margin: 20px;
+  margin: 20px 0;
 }
 
 .search-results a {
@@ -42,7 +42,7 @@ nav li {
 
 .search-item {
   border: 1px solid rgba(0, 0, 0, 0.5);
-  width: 30%;
+  width: 25%;
   margin: 10px;
   padding: 10px;
   display: inline-block;
