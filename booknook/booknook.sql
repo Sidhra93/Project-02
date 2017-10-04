@@ -8,3 +8,5 @@ CREATE TABLE books(
   decription VARCHAR(2000),
   image_url VARCHAR(500)
 );
+
+ALTER TABLE books ADD COLUMN volume_id VARCHAR (100);
