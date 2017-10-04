@@ -1,0 +1,7 @@
+<img src="<%= @book.image_url %>" alt="" width="200"><br>
+
+<form class="" action="/comment" method="post">
+  <input type="hidden" name="volume" value="<%= @book.volume_id %>">
+  <textarea name="comment" rows="3" cols="80"></textarea>
+  <button type="submit" name="button">Post</button>
+</form>
