@@ -5,10 +5,26 @@ require 'pry'
 require_relative 'db_config'
 require_relative 'models/book'
 require_relative 'models/user'
+require_relative 'models/discussion'
+
+enable :sessions
+
+helpers do
+  def current_user
+    User.find_by(id: session[:user_id])
+  end
+
+  def logged_in?
+    !!current_user
+  end
+
+end
 
 get '/' do
   erb :index
 end
+
+# ===================== BOOK SEARCH/DETAILS ========================
 
 get '/browse-books' do
   @books = Book.all.limit(10).shuffle
@@ -42,10 +58,49 @@ get '/details' do
   erb :details
 end
 
+# ======================= LOGIN PAGE ============================
+
 get '/login-page' do
   erb :login
 end
 
 post '/session' do
-  "#{params[:username]} #{params[:password]}"
+  user = User.find_by(username: params[:username])
+
+  if user && user.authenticate(params[:password])
+    session[:user_id] = user.id
+    redirect "/"
+  else
+    @message = "Wrong credentials. Try Again."
+    session[:user_id] = nil
+    erb :login
+  end
+end
+
+delete '/session' do
+  if logged_in?
+    session[:user_id] = nil
+    redirect '/'
+  else
+    "error"
+  end
+end
+
+# ========================== DISCUSSIONS ==========================
+get '/discussions' do
+  if logged_in?
+    @book = Book.find_by(volume_id: params[:volume])
+    erb :discussions
+  else
+    redirect "/login-page"
+  end
+end
+
+post '/comment' do
+  discussion = Discussion.new
+  discussion.comment = params[:comment]
+  discussion.book_id = params[:volume]
+  discussion.user_id = current_user.id
+  discussion.save
+  redirect "/discussions?volume=#{params[:volume]}"
 end

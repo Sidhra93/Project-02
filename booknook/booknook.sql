@@ -16,3 +16,12 @@ CREATE TABLE users(
   username VARCHAR(100),
   password_digest VARCHAR(400)
 );
+
+CREATE TABLE discussions(
+  id SERIAL4 PRIMARY KEY,
+  comment VARCHAR(1000),
+  book_id VARCHAR(100) NOT NULL,
+  FOREIGN KEY (book_id) REFERENCES books(volume_id),
+  user_id INTEGER NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);

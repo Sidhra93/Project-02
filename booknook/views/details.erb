@@ -3,3 +3,5 @@
 <p><%= "Author: #{@book.author}" %></p>
 <p><%= "Published: #{@book.date_published}" %></p>
 <p><%= "Plot: #{@book.description}" %></p>
+
+<h3><a href="/discussions?volume=<%= @book.volume_id %>">See Discussions</a></h3>

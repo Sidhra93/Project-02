@@ -7,7 +7,7 @@
   <% @books.each do |book| %>
   <div class="search-item">
     <a href="/details?search=<%= book["id"]%>">
-      <img src="<%= book["volumeInfo"]["imageLinks"]["smallThumbnail"]%>" alt="" width="100px">
+      <img src="<%= book["volumeInfo"]["imageLinks"]["smallThumbnail"]%>" alt="" width="100">
     </a>
     <%="#{book["volumeInfo"]["title"]}, #{book["volumeInfo"]["authors"].join(", ")}" %>
   </div>
