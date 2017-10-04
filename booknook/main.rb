@@ -4,13 +4,14 @@ require 'httparty'
 require 'pry'
 require_relative 'db_config'
 require_relative 'models/book'
+require_relative 'models/user'
 
 get '/' do
   erb :index
 end
 
 get '/browse-books' do
-  @books = Book.all.limit(10)
+  @books = Book.all.limit(10).shuffle
   erb :booksearch
 end
 
@@ -34,9 +35,17 @@ get '/details' do
     @book.author = data["volumeInfo"]["authors"].join(", ")
     @book.date_published = data["volumeInfo"]["publishedDate"]
     @book.description = data["volumeInfo"]["description"]
-    @book.image_url = data["volumeInfo"]["imageLinks"]["small"]
+    @book.image_url = data["volumeInfo"]["imageLinks"]["thumbnail"]
     @book.volume_id = data["id"]
     @book.save
   end
   erb :details
+end
+
+get '/login-page' do
+  erb :login
+end
+
+post '/session' do
+  "#{params[:username]} #{params[:password]}"
 end
