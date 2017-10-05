@@ -13,8 +13,9 @@ ALTER TABLE books ADD COLUMN volume_id VARCHAR (100);
 
 CREATE TABLE users(
   id SERIAL4 PRIMARY KEY,
-  username VARCHAR(100),
-  password_digest VARCHAR(400)
+  email VARCHAR(100),
+  password_digest VARCHAR(400),
+  display_name VARCHAR(100)
 );
 
 CREATE TABLE discussions(

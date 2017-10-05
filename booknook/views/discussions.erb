@@ -5,3 +5,11 @@
   <textarea name="comment" rows="3" cols="80"></textarea>
   <button type="submit" name="button">Post</button>
 </form>
+
+<% if @discussions == [] %>
+  <p>No Discussion</p>
+  <% else %>
+  <% @discussions.each do |discussion| %>
+  <p><%= discussion.comment %></p>
+  <% end %>
+<% end %>

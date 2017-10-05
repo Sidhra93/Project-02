@@ -1,1 +1,12 @@
-<h1>hello world</h1>
+
+<div class="search-results">
+  <h3>Current Discussions</h3>
+  <% @discussions.each do |discussion| %>
+  <div class="search-item">
+    <a href="/discussions?volume=<%= discussion.book_id %>">
+      <img src="<%= discussion.book.image_url%>" alt="" width="100px">
+    </a>
+    <!-- <%#="#{book.title}, #{book.author}" %> -->
+  </div>
+<% end %>
+</div>

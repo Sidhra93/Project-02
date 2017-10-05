@@ -11,7 +11,7 @@
     <header>
       <h1>The Book Nook</h1>
       <% if logged_in? %>
-        <h3>Welcome, <%= current_user.username %>!</h3>
+        <h3>Welcome, <%= current_user.display_name %>!</h3>
         <form class="" action="/session" method="post">
           <input type="hidden" name="_method" value="delete">
           <button type="submit" name="button">Logout</button>
@@ -22,7 +22,7 @@
           <li><a href="/">Home</a></li>
           <li><a href="/browse-books">Browse Books</a></li>
           <% if !logged_in? %>
-          <li><a href="/login-page">Login</a></li>
+          <li><a href="/login-page">Login/Register</a></li>
           <% end %>
         </ul>
       </nav>

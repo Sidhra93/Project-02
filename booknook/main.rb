@@ -20,7 +20,10 @@ helpers do
 
 end
 
+# ===================== HOME PAGE ==========================
 get '/' do
+  @discussions = Discussion.find_by_sql("select distinct book_id from discussions ")
+
   erb :index
 end
 
@@ -65,7 +68,7 @@ get '/login-page' do
 end
 
 post '/session' do
-  user = User.find_by(username: params[:username])
+  user = User.find_by(email: params[:email])
 
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
@@ -86,10 +89,20 @@ delete '/session' do
   end
 end
 
+post '/register' do
+  user = User.new
+  user.email = params[:email]
+  user.display_name = params[:display_name]
+  user.password = params[:password]
+  user.save
+  redirect '/login-page'
+end
+
 # ========================== DISCUSSIONS ==========================
 get '/discussions' do
   if logged_in?
     @book = Book.find_by(volume_id: params[:volume])
+    @discussions = Discussion.where(book_id: params[:volume])
     erb :discussions
   else
     redirect "/login-page"
