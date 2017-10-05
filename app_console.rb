@@ -5,5 +5,5 @@ require_relative 'models/user'
 require_relative 'models/discussion'
 
 
-binding.pry
+# binding.pry
 puts "ready"

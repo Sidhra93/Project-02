@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'sinatra/reloader'
+# require 'sinatra/reloader'
 require 'httparty'
 require 'pry'
 require_relative 'db_config'
@@ -114,6 +114,7 @@ post '/comment' do
   discussion.comment = params[:comment]
   discussion.book_id = params[:volume]
   discussion.user_id = current_user.id
+  discussion.commented_at = Time.new
   discussion.save
   redirect "/discussions?volume=#{params[:volume]}"
 end

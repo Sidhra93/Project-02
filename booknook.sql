@@ -26,3 +26,5 @@ CREATE TABLE discussions(
   user_id INTEGER NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+ALTER TABLE discussions ADD COLUMN commented_at VARCHAR(50);
