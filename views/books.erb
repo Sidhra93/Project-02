@@ -1,15 +1,20 @@
-<form class="" action="/books" method="get">
-  <input type="text" name="search" value="">
-  <button type="submit" name="button">Search</button>
-</form>
-
-<div class="search-results">
-  <% @books.each do |book| %>
-  <div class="search-item">
-    <a href="/details?search=<%= book["id"]%>">
-      <img src="<%= book["volumeInfo"]["imageLinks"]["smallThumbnail"]%>" alt="" width="100">
-    </a>
-    <%="#{book["volumeInfo"]["title"]}, #{book["volumeInfo"]["authors"].join(", ")}" %>
+<div class="search-page">
+  <div class="row search">
+    <div class="col-12">
+      <form class="form-inline my-2 my-lg-0" action="/books" method="get">
+        <input class="form-control mr-sm-2" type="text" name="search"  placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="button">Search</button>
+      </form>
+    </div>
   </div>
-<% end %>
+  <div class="row book-items">
+    <% @books.each do |book| %>
+      <div class="col-6 col-sm-4 col-md-3">
+        <a href="/details?search=<%= book["id"]%>">
+          <img src="<%= book["volumeInfo"]["imageLinks"]["smallThumbnail"]%>" alt="" width="100">
+        </a>
+        <span class="book-info"><span class="book-title"><%= book["volumeInfo"]["title"] %></span><br><%= book["volumeInfo"]["authors"].join(", ") %></span>
+      </div>
+    <% end %>
+  </div>
 </div>

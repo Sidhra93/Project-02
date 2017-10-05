@@ -1,30 +1,42 @@
-<div class="login">
-  <form class="" action="/session" method="post">
-    <label for="">Email</label>
-    <input type="text" name="email" value=""><br>
-
-    <label for="">Password</label>
-    <input type="password" name="password" value=""><br>
-
-    <button type="submit" name="button">Login</button>
-  </form>
-  <br>
-  <%= @message %>
+<h2>Login</h2>
+<div class="row">
+  <div class="col-12 col-lg-6">
+    <%= @message %>
+    <form action="/session" method="post">
+      <input type="hidden" name="book_id" value="<%= @book_id %>">
+      <div class="form-group">
+        <label for="email-input">Email</label>
+        <input id="email-input" class="form-control" type="text" name="email">
+      </div>
+      <div class="form-group">
+        <label for="password-input">Password</label>
+        <input id="password-input" class="form-control" type="password" name="password" value="">
+      </div>
+      <button class="btn btn-primary" type="submit" name="button">Login</button>
+    </form>
+  </div>
 </div>
 
 <hr>
 
-<div class="register">
-  <form class="" action="/register" method="post">
-    <label for="">Email</label>
-    <input type="text" name="email" value=""><br>
+<h2>Register</h2>
+<div class="row">
+  <div class="col-12 col-lg-6">
+    <form action="/register" method="post">
+      <div class="form-group">
+        <label for="email-input">Email</label>
+        <input id="email-input" class="form-control" type="text" name="email" value="">
+      </div>
+      <div class="form-group">
+        <label for="name-input">Display Name</label>
+        <input id="name-input" class="form-control" type="text" name="display_name" value="">
+      </div>
+      <div class="form-group">
+        <label for="name-input">Password</label>
+        <input id="name-input" class="form-control" type="password" name="password" value="">
+      </div>
 
-    <label for="">Display Name</label>
-    <input type="text" name="display_name" value=""><br>
-
-    <label for="">Password</label>
-    <input type="password" name="password" value=""><br>
-
-    <button type="submit" name="button">Register</button>
-  </form>
+      <button class="btn btn-primary" type="submit" name="button">Register</button>
+    </form>
+  </div>
 </div>

@@ -23,14 +23,13 @@ end
 # ===================== HOME PAGE ==========================
 get '/' do
   @discussions = Discussion.find_by_sql("select distinct book_id from discussions ")
-
   erb :index
 end
 
 # ===================== BOOK SEARCH/DETAILS ========================
 
 get '/browse-books' do
-  @books = Book.all.limit(10).shuffle
+  @books = Book.all.limit(12).shuffle
   erb :booksearch
 end
 
@@ -44,6 +43,9 @@ end
 
 get '/details' do
   book_id = params[:search]
+  @count = 0
+  # @book = Book.find_by(volume_id: params[:volume])
+  @discussions = Discussion.where(book_id: book_id)
   if Book.find_by(volume_id: book_id)
     @book = Book.find_by(volume_id: book_id)
   else
@@ -61,9 +63,25 @@ get '/details' do
   erb :details
 end
 
+# ========================== COMMENT ==========================
+
+post '/comment' do
+  discussion = Discussion.new
+  discussion.comment = params[:comment]
+  discussion.book_id = params[:volume]
+  discussion.user_id = current_user.id
+  discussion.commented_at = Time.now.asctime
+  discussion.save
+  redirect "/details?search=#{params[:volume]}"
+end
+
 # ======================= LOGIN PAGE ============================
 
 get '/login-page' do
+  @book_id = ''
+    if params.key?("id")
+      @book_id = params[:id]
+    end
   erb :login
 end
 
@@ -72,6 +90,9 @@ post '/session' do
 
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
+    if params[:book_id] != ''
+      redirect "/details?search=#{params[:book_id]}"
+    end
     redirect "/"
   else
     @message = "Wrong credentials. Try Again."
@@ -96,25 +117,4 @@ post '/register' do
   user.password = params[:password]
   user.save
   redirect '/login-page'
-end
-
-# ========================== DISCUSSIONS ==========================
-get '/discussions' do
-  if logged_in?
-    @book = Book.find_by(volume_id: params[:volume])
-    @discussions = Discussion.where(book_id: params[:volume])
-    erb :discussions
-  else
-    redirect "/login-page"
-  end
-end
-
-post '/comment' do
-  discussion = Discussion.new
-  discussion.comment = params[:comment]
-  discussion.book_id = params[:volume]
-  discussion.user_id = current_user.id
-  discussion.commented_at = Time.new
-  discussion.save
-  redirect "/discussions?volume=#{params[:volume]}"
 end

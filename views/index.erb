@@ -1,12 +1,18 @@
 
-<div class="search-results">
-  <h3>Current Discussions</h3>
-  <% @discussions.each do |discussion| %>
-  <div class="search-item">
-    <a href="/discussions?volume=<%= discussion.book_id %>">
-      <img src="<%= discussion.book.image_url%>" alt="" width="100px">
-    </a>
-    <!-- <%#="#{book.title}, #{book.author}" %> -->
+<div class="home-page">
+  <div class="row">
+    <div class="col-12">
+      <h2>Current Discussions</h2>
+    </div>
   </div>
-<% end %>
+  <div class="row book-items">
+    <% @discussions.each do |discussion| %>
+    <div class="col-6 col-sm-4 col-md-3">
+      <a href="/details?search=<%= discussion.book_id %>">
+        <img src="<%= discussion.book.image_url%>" alt="" width="100px">
+      </a>
+      <span class="book-info"> <span class="book-title"><%= discussion.book.title %></span> <br><%= discussion.book.author %></span>
+    </div>
+    <% end %>
+  </div>
 </div>

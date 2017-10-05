@@ -1,7 +1,45 @@
-<img src="<%= @book.image_url %>" alt="" width="200"><br>
-<p><%= "Title: #{@book.title}" %></p>
-<p><%= "Author: #{@book.author}" %></p>
-<p><%= "Published: #{@book.date_published}" %></p>
-<p><%= "Plot: #{@book.description}" %></p>
+<div class="row">
+  <div class="col-4">
+    <img src="<%= @book.image_url %>" alt="" width="200"><br>
+  </div>
+  <div class="col-8 book-details">
+    <span class="book-title"><%= @book.title %></span>
+    <span class="book-author">by <%= @book.author %></span>
+    <span class="book-desc"><%= @book.description %></span>
+  </div>
 
-<h3><a href="/discussions?volume=<%= @book.volume_id %>">See Discussions</a></h3>
+</div>
+
+
+<% if logged_in? %>
+  <% if @discussions == [] %>
+  <div class="row">
+    <div class="col-12">
+      <p>No Discussion yet. Start one.</p>
+    </div>
+  </div>
+  <% else %>
+  <% @discussions.each do |discussion| %>
+  <div class="comment">
+    <div class="comment-details">
+      message <%= @count += 1%> by <%= discussion.user.display_name%> <span class="comment-date"><%= discussion.commented_at %></span>
+    </div>
+    <div class="comment-content">
+      <% if discussion.user_id == current_user.id %>
+      <span><a href="#">delete</a></span>
+      <% end %>
+      <p><%= discussion.comment %></p>
+    </div>
+  </div>
+  <% end %>
+  <% end %>
+  <form class="" action="/comment" method="post">
+    <div class="form-group">
+      <input type="hidden" name="volume" value="<%= @book.volume_id %>">
+      <textarea class="form-control" name="comment" rows="3" cols="80"></textarea>
+    </div>
+    <button class="btn btn-secondary" type="submit" name="button">Post</button>
+  </form>
+<% else %>
+  <h3><a href="/login-page?id=<%= @book.volume_id %>">Login to see Discussion</a></h3>
+<% end %>
