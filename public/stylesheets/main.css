@@ -102,6 +102,16 @@ h3.welcome-message {
 .comment-content span {
   float: right;
 }
+.comment-content button {
+  border: none;
+  background-color: #fff;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.comment-content button:hover{
+  text-decoration: underline;
+}
 
 /*----------------------LOGIN/REGISTER----------------------*/
 

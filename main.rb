@@ -44,7 +44,6 @@ end
 get '/details' do
   book_id = params[:search]
   @count = 0
-  # @book = Book.find_by(volume_id: params[:volume])
   @discussions = Discussion.where(book_id: book_id)
   if Book.find_by(volume_id: book_id)
     @book = Book.find_by(volume_id: book_id)
@@ -73,6 +72,13 @@ post '/comment' do
   discussion.commented_at = Time.now.asctime
   discussion.save
   redirect "/details?search=#{params[:volume]}"
+end
+
+delete '/comment' do
+  comment = Discussion.find(params[:id])
+  comment.destroy
+
+  redirect "/details?search=#{comment.book_id}"
 end
 
 # ======================= LOGIN PAGE ============================

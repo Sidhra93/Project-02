@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="col-4">
+  <div class="col-12 col-md-4">
     <img src="<%= @book.image_url %>" alt="" width="200"><br>
   </div>
-  <div class="col-8 book-details">
+  <div class=" col-12 col-md-8 book-details">
     <span class="book-title"><%= @book.title %></span>
     <span class="book-author">by <%= @book.author %></span>
     <span class="book-desc"><%= @book.description %></span>
@@ -26,7 +26,13 @@
     </div>
     <div class="comment-content">
       <% if discussion.user_id == current_user.id %>
-      <span><a href="#">delete</a></span>
+      <span>
+        <form class="" action="comment" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input type="hidden" name="id" value="<%= discussion.id %>">
+          <button type="submit" name="button">delete</button>
+        </form>
+      </span>
       <% end %>
       <p><%= discussion.comment %></p>
     </div>
