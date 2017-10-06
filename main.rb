@@ -116,6 +116,18 @@ delete '/session' do
   end
 end
 
+get '/password-reset' do
+  erb :password
+end
+
+put '/reset' do
+  user = User.find_by(email: params[:email])
+  user.password = params[:password]
+  user.save
+  @message = "Password Reset Successful."
+  erb :login
+end
+
 post '/register' do
   user = User.new
   user.email = params[:email]
