@@ -122,5 +122,6 @@ post '/register' do
   user.display_name = params[:display_name]
   user.password = params[:password]
   user.save
-  redirect '/login-page'
+  @message = "Succesfully registered. You may now Login."
+  erb :login
 end

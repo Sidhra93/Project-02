@@ -116,7 +116,10 @@ h3.welcome-message {
 
 /*----------------------LOGIN/REGISTER----------------------*/
 
-
+.message {
+  color: #ff0000;
+  padding: 20px;
+}
 
 /*-----------------------FOOTER STYLES-------------------------*/
 

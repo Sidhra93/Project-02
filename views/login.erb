@@ -1,7 +1,7 @@
 <h2>Login</h2>
 <div class="row">
   <div class="col-12 col-lg-6">
-    <%= @message %>
+    <span class="message"><%= @message %></span>
     <form action="/session" method="post">
       <input type="hidden" name="book_id" value="<%= @book_id %>">
       <div class="form-group">
