@@ -95,6 +95,11 @@ h3.welcome-message {
   clear: both;
 }
 
+.comment-details .comment-user {
+  font-weight: bold;
+  font-size: 18px;
+}
+
 .comment-content {
   padding: 5px;
 }

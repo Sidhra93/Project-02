@@ -22,7 +22,8 @@
   <% @discussions.each do |discussion| %>
   <div class="comment">
     <div class="comment-details">
-      message <%= @count += 1%> by <%= discussion.user.display_name%> <span class="comment-date"><%= discussion.commented_at %></span>
+      message <%= @count += 1%> by <span class="comment-user"><%= discussion.user.display_name%></span>
+      <span class="comment-date"><%= discussion.commented_at %></span>
     </div>
     <div class="comment-content">
       <% if discussion.user_id == current_user.id %>
