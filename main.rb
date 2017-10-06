@@ -69,7 +69,7 @@ post '/comment' do
   discussion.comment = params[:comment]
   discussion.book_id = params[:volume]
   discussion.user_id = current_user.id
-  discussion.commented_at = Time.now.asctime
+  discussion.commented_at = Time.now.utc.asctime
   discussion.save
   redirect "/details?search=#{params[:volume]}"
 end
