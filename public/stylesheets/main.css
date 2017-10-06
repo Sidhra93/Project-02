@@ -101,6 +101,7 @@ h3.welcome-message {
 
 .comment-content span {
   float: right;
+  margin-left: 20px;
 }
 .comment-content button {
   border: none;
